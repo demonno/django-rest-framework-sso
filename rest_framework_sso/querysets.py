@@ -20,7 +20,7 @@ class SessionTokenQuerySet(QuerySet):
         specifying whether an object was created.
         """
         if request_meta and "HTTP_USER_AGENT" in request_meta:
-            kwargs["user_agent__startswith"] = request_meta.get("HTTP_USER_AGENT")[:100]
+            kwargs["user_agent"] = request_meta.get("HTTP_USER_AGENT")[:100]
 
         obj = self.filter(**kwargs).first()
         created = False
